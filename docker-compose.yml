@@ -1,0 +1,68 @@
+version: '3.7'
+services:
+
+  #Yii2 App
+  blended-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: blended/yii2
+    container_name: blended-app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: blended-app
+      SERVICE_TAGS: local
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www/
+      - /var/www/vendor/
+    networks:
+      - blended-network
+
+  #Nginx Service
+  blended-webserver:
+    image: nginx:alpine
+    container_name: blended-nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./docker/nginx/ssl/:/etc/nginx/ssl/
+    networks:
+      - blended-network
+
+  #Postgres Service
+  blended-db:
+    image: postgres:alpine
+    container_name: blended-postgres
+    restart: unless-stopped
+    tty: true
+    environment:
+      - POSTGRES_USER=blended
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=blended_db
+    ports:
+     - "5432:5432"
+    volumes:
+      - ./docker/postgres:/var/lib/postgresql/data
+    networks:
+      - blended-network
+
+  #Redis Service
+  blended-redis:
+    image: redis:alpine
+    container_name: blended-redis
+    tty: true
+    ports:
+      - "6380:6379"
+
+#Docker Networks
+networks:
+  blended-network:
+    driver: bridge
+    name: blended-network
