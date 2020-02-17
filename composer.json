@@ -18,10 +18,12 @@
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
-        "lcobucci/jwt": "^3.3"
+        "lcobucci/jwt": "^3.3",
+        "vlucas/phpdotenv": "^4.1",
+        "tebazil/yii2-db-seeder": "^0.0.0",
+        "yiisoft/yii2-debug": "^2.1"
     },
     "require-dev": {
-        "yiisoft/yii2-debug": "~2.1.0",
         "yiisoft/yii2-gii": "~2.1.0",
         "yiisoft/yii2-faker": "~2.0.0",
         "codeception/codeception": "^4.0",
@@ -31,6 +33,9 @@
         "codeception/module-filesystem": "^1.0.0",
         "codeception/module-yii2": "^1.0.0",
         "codeception/module-asserts": "^1.0.0"
+    },
+    "autoload": {
+        "files": ["helpers/utils.php"]
     },
     "config": {
         "process-timeout": 1800,

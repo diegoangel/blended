@@ -9,7 +9,7 @@ WORKDIR /var/www
 
 # Install Additional dependencies
 RUN apk update && apk add --no-cache \
-    build-base shadow vim curl postgresql-client openssl openssh-client \
+    build-base shadow vim curl postgresql-dev postgresql-client openssl openssh-client \
     nodejs npm yarn \
     freetype-dev \
     libjpeg-turbo-dev \

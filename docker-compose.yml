@@ -38,7 +38,7 @@ services:
 
   #Postgres Service
   blended-db:
-    image: postgres:alpine
+    image: postgres:latest
     container_name: blended-postgres
     restart: unless-stopped
     tty: true
@@ -49,7 +49,7 @@ services:
     ports:
      - "5432:5432"
     volumes:
-      - ./docker/postgres:/var/lib/postgresql/data
+      - ./docker/postgres/data:/var/lib/postgresql/data
     networks:
       - blended-network
 

@@ -31,3 +31,13 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
+
+.env
+
+*.sublime-*
+
+docker/postgres/*
+docker/nginx/log/*
+docker/php/log/*
+
+runtime/*
